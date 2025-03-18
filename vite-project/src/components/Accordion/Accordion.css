@@ -1,0 +1,57 @@
+.accordion
+{
+    border: 1px solid gray;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.accordion__header button
+{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px;
+    border-bottom: 1px solid gray;
+    background-color:blueviolet;
+    color: #fff;
+    width: 100%;
+    text-align: left;
+}
+.accordion__button.collapsed
+{
+    background-color: #fff;
+    color: #000;
+}
+
+.accordion__button::after
+{
+    position: absolute;
+    right: 20px;
+    left: auto;
+    width: 20px;
+    height: 20px;
+    content: "";
+    border-right: 1px solid green;
+    border-bottom: 1px solid green;
+    transform: rotate(45deg);
+    
+}
+.accordion__button.collapsed::after
+{
+    transform: rotate(225deg);
+}
+
+.accordion__collapse.collapse
+{
+    display: none;
+}
+.accordion__collapse.show
+{
+    display: block;
+}
+.accordion__body
+{
+    padding: 20px;
+}
+.accordion__item
+{
+    transition: all 0.2s ease-in-out;
+}

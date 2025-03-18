@@ -1,0 +1,26 @@
+.alert
+{
+  background-color:blueviolet;
+  padding: 15px 20px;
+  color: #fff;
+  border-radius: 4px; 
+  border: 2px solid blueviolet;
+  margin: 15px 0px;
+}
+.alert.alert-primary
+{
+  border-color: blueviolet;
+  background-color: blueviolet;
+}
+.alert.alert-secondary
+{
+  border-color: gainsboro;
+  background-color: gainsboro;
+  color: #000;
+}
+.alert.alert-success
+{
+  border-color: green;
+  background-color: green;
+  color: #fff;
+}
