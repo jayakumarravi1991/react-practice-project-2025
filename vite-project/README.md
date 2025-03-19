@@ -2,7 +2,8 @@
 PropTypes library help you to define the types and requirements for the props your components expects, which can catch bugs early and improve code readability.
 - Install PropTypes: npm install prop-types
 - Import PropTypes: import PropTypes from 'prop-types';
-- Example: ```
+- Example: 
+```
 Accordion.propTypes = {
   content: PropTypes.arrayOf(
     PropTypes.shape({
@@ -12,7 +13,9 @@ Accordion.propTypes = {
     })
   ).isRequired,
 };
+
 ```
+
 
 
 # React + Vite
