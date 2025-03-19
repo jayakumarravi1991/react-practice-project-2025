@@ -1,3 +1,20 @@
+## prop-types
+PropTypes library help you to define the types and requirements for the props your components expects, which can catch bugs early and improve code readability.
+- Install PropTypes: npm install prop-types
+- Import PropTypes: import PropTypes from 'prop-types';
+- Example: ```
+Accordion.propTypes = {
+  content: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+```
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

@@ -8,12 +8,18 @@
 {
     font-size: 18px;
     font-weight: bold;
-    padding: 20px;
-    border-bottom: 1px solid gray;
+    padding: 20px 47px 20px 20px;
+    border-width: 0px;
+    border-radius: 0;    
     background-color:blueviolet;
     color: #fff;
     width: 100%;
     text-align: left;
+    position: relative;
+}
+.accordion__header button:focus-visible, .accordion__header button:focus
+{
+    outline: 0;
 }
 .accordion__button.collapsed
 {
@@ -26,17 +32,21 @@
     position: absolute;
     right: 20px;
     left: auto;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     content: "";
-    border-right: 1px solid green;
-    border-bottom: 1px solid green;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
     transform: rotate(45deg);
+    top:45%;
     
 }
 .accordion__button.collapsed::after
 {
-    transform: rotate(225deg);
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 0px solid #000;
+    border-bottom: 0px solid #000;
 }
 
 .accordion__collapse.collapse
@@ -54,4 +64,9 @@
 .accordion__item
 {
     transition: all 0.2s ease-in-out;
+    border-bottom: 1px solid gray;
+}
+.accordion__item:last-of-type
+{
+    border-bottom: 0px solid gray;
 }

@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Alerts from './components/Alerts/Alerts'
 import Accordion from './components/Accordion/Accordion';
+import {accordionContentOne, accordionContentTwo} from './data.jsx';
 
 function App() {
   return (
@@ -13,7 +11,8 @@ function App() {
       <Alerts alertType="alert-secondary">A simple primary alert—check it out!</Alerts>
       <Alerts alertType="alert-success">A simple primary alert—check it out!</Alerts>
       <section>
-        <Accordion id="accordionExampleOne"></Accordion>
+        <Accordion id="accordionExampleOne" accordionContent={accordionContentOne}></Accordion>
+        <Accordion id="accordionExampleTwo" accordionContent={accordionContentTwo}></Accordion>
       </section>
     </>
   )
