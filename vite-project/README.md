@@ -71,9 +71,40 @@ Accordion.propTypes = {
 7. Array map method and all array methods
 8. Javascript Template Literals
 9. For loop
+10. Computed Property Names?
+11. parseInt?
 
 ### Answers:
-4. Eclamation mark infront of variable name
+4. Eclamation mark infront of variable name?
 - if we have boolean value and want to get opposite value, we can use exclamation mark to variable name. When we add exclamation mark to variable value it inverts the value e.g !true to false and !false to true.
-8. Javascript Template Literals
+8. Javascript Template Literals?
 - We use backticks to create string in template literals. ${} to add dynamic value or variable value to template literal to create string.
+10. Computed Property Names?
+- Computed Property Names to dynamically update or add properties to an object. We can dynamically set the property name of an object using using square brackets ([]) around the property name.
+- Allow you to use variable name as property name in an object
+- Syntax: 
+``` 
+let obj = {
+  [dynamicKey]: dynamicValue
+};  (for value and key we also can use variables)
+```
+- Example: 
+```
+let user = {
+  name: "Alice",
+  age: 25
+};
+
+let key = "email";
+let value = "alice@example.com";
+let name = "name"
+let namevalue = "NewAlice";
+
+user = { ...user, [key]: value, [name]: namevalue };
+
+console.log(user);
+// Output: { name: "NewAlice", age: 25, email: "alice@example.com" } 
+```
+- Benefits:  You can dynamically add or update properties without hardcoding the property names. It's easier to manage and update objects, especially in complex applications.This approach is particularly useful in scenarios like form handling, where you need to update state dynamically based on user input.
+11. parseInt ?
+- Using this we can convert string to number. ``` parseInt(ageValue) ```; The second parameter in parseInt is radix parameter that specifies the number system to use ``` 2 = binary, 8 = octal, 10 = decimal, 16 = hexadecimal ```. If radix is omitted, JavaScript assumes radix 10. If the first character cannot be converted, NaN is returned.
