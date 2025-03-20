@@ -1,4 +1,24 @@
 # React Learnings and Topics
+## React
+1. React projects comes with a build process that transforms JSX code(behing the scene by development server) to code that does work in browsers.
+2. In React we write code in decalarative way. You define the target HTML structure & UI - not the steps to get there!
+## Component Functions or React Components
+Component is just a regular javascript function. React to recognize the javascript function as component and used as component, it's a component functions or javascript function must follow two important rules:
+1. The function name must start with an uppercase character. Multi-word names should be written in PascalCase(e.g "MyHeader").
+2. The function must return a **value** that can be **rendered**(displayed on screen) by React. It has to return "Renderable Content".
+    - In most cases: Returns JSX also allwed: string, number, boolean, null, array of allowed values.
+### JSX
+- JavaScript Syntax eXtension. It is used to describe & Create HTML elements by writing HTML markup code inside of Javascript file in a declarative way.
+- Browsers do not support JSX syntax.
+### Build-in Components vs Custom Components
+1. Build-in Components
+   - Name starts with a **lowercase** character
+   - only **valid, offically** defined HTML elements are allowed
+   - Are **renderes as DOM Nodes** by React
+2. Custom Components
+   - Name starts with **uppercase character**
+   - **Defined by you**, "Wraps" built-in or other custom components.
+   - React **"traverses"** the component tree until it has only built-in components left
 ### Component instances work in isolation
 When we reuse component multiple time they work separately or alone without impacting the other instances of same component. All instances uses same logic of component but each instances work in isolation.
 ### User input and two way binding
@@ -60,11 +80,12 @@ Accordion.propTypes = {
 8. What is Client side rendering(CSR) and Server side rendering(SSR).
 9. What is SPA and Non SPA and difference between these two?
 10. How to indentify the site is SPA or non SPA site?
+11. Build-in Components vs Custom Components?
 
 ## Important Javascript Interview Questions:
 1. Rest and Spread Operator
 2. Array and Object destructing
-3. Ternary Operator or Experssion
+3. Ternary Operator(Experssion) and && double ampersand method?
 4. Eclamation mark infront of variable name
 5. Multi dimensional array
 6. Arguments and Parameter
@@ -72,7 +93,7 @@ Accordion.propTypes = {
 8. Javascript Template Literals
 9. For loop
 10. Computed Property Names?
-11. parseInt?
+11. parseInt and + Plus symbol to convert string to number?
 
 ### Answers:
 4. Eclamation mark infront of variable name?
@@ -108,3 +129,4 @@ console.log(user);
 - Benefits:  You can dynamically add or update properties without hardcoding the property names. It's easier to manage and update objects, especially in complex applications.This approach is particularly useful in scenarios like form handling, where you need to update state dynamically based on user input.
 11. parseInt ?
 - Using this we can convert string to number. ``` parseInt(ageValue) ```; The second parameter in parseInt is radix parameter that specifies the number system to use ``` 2 = binary, 8 = octal, 10 = decimal, 16 = hexadecimal ```. If radix is omitted, JavaScript assumes radix 10. If the first character cannot be converted, NaN is returned.
+- Also we can use Plus symbol infront of string variable to convert the string to number.
