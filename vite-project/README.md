@@ -68,7 +68,36 @@ Accordion.propTypes = {
 };
 
 ```
+## useReducer
+useReducer is similar to useState, but it lets you move the state update logic from event handlers into a single function outside of your component.
+**useReducer** returns an array with exactly two items:
+1. The **current state** of this state variable, initially set to the **initial state** you provided.
+2. The **dispatch function** that lets you change it in response to interaction.
+To update what’s on the screen, call **dispatch** with an object representing what the user did, called an action:
+```
+function handleClick() {
+  dispatch({ type: 'incremented_age' });
+}
+```
+React will pass the current state and the action to your reducer function. Your reducer will calculate and return the next state. React will store that next state, render your component with it, and update the UI.
+```
+import { useReducer } from 'react';
+function reducer(state, action) {
+  // ...
+}
 
+function MyComponent() {
+  const [state, dispatch] = useReducer(reducer, { age: 42 });
+  // ...
+```
+A reducer function is declared like this:
+```
+function reducer(state, action) {
+  // ...
+}
+```
+Then you need to fill in the code that will calculate and return the next state.
+Actions can have any shape. By convention, it’s common to pass objects with a type property identifying the action. It should include the minimal necessary information that the reducer needs to compute the next state. The action type names are local to your component.
 ## Important React Inteview Questions:
 1. what is Virtual DOM and Real DOM in react and the difference between these two DOM.
 2. What is state?
