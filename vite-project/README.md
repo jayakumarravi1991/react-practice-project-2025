@@ -107,6 +107,19 @@ useRef is an react hook. First we have to assign useRef value to const name then
 ### using Refs more than DOM Element connections
 - We can use useRef also to store values of component instance specific and useRef stores the values of each component instances separately and this value will be available if component re-renders also. We can use refs to manager the values of component instance.
 - Ref value wont be reset or cleared when component re-excutes, instead just as how it stores the state value, it also stores the ref values behind the scene, react make sures they dont get lose when component function re executes.
+### Forwarding Refs
+- React wont accept ref as regular prop(when destrcuting the ref prop in component function) in react 19 below. To **forward ref** as props to the component function in react 19 below, we have to use forwardRef method.
+- Forward Ref is deprecated in React 19 and above version, forwardRef is no longer necessary. Pass **ref** as a prop instead.
+
+Call **forwardRef()** to let your component receive a ref and forward it to a child component:
+```
+import { forwardRef } from 'react';
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+  // ...
+});
+```
+
 ## Context API (createContext and useContext hooks)
 - Using Context API, we can able to access values directly in any component without need of passing through props to multiple compponent. We can add state updating function values and other values in context and that we can access in any component by wrapping context element.
 - We can consume the context values using useContext or use react hooks(methods) by passing context const inside the useContext as value then we can destruture values from the object returned by useContext. The use() work only react version 19 above and if react version is below 19 we have to use useContext() hook. By default we can not use react hooks inside if block or any other block and have to define hooks at top of inside component fuction but use() hook we can use inside any block(e.g if block). By using useContext, we can connect any component function to context and then we can access values of context in component funciton.
