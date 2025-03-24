@@ -33,6 +33,8 @@ Create component specific jsx file and put all code related to component specifi
 By default javascript function and react component function return only one element(value), can not return multiple values. If we add fragment method we can avoid using unwanted div element as wrapper and we can return multiple sibling elements. 
 ``` Either we can use empty fragment <></> or <fragment></fragment> ```
 ## State
+- State values do cause component function to be re-executed when changed through state updating funciton.
+- State should be used when ever you have values that should be directly reflected in the UI and not be used for the values that are used behind the scenes and have no direct UI impact.
 ### Lifting state up
 We can lift state up to the ancestor component(where both child components has access to it) when two or component needs same state value. The ancestor component manages the state and passes the function that updates the state via props to child component. When user interact in child component it triggers the state updating function in parent or ancestor component and updates the state value. We can access the function which updates the state in another component by calling it using the props value.
 ### Avoid intersecting states
@@ -98,6 +100,20 @@ function reducer(state, action) {
 ```
 Then you need to fill in the code that will calculate and return the next state.
 Actions can have any shape. By convention, it’s common to pass objects with a type property identifying the action. It should include the minimal necessary information that the reducer needs to compute the next state. The action type names are local to your component.
+## useRef React hook
+useRef is an react hook. First we have to assign useRef value to const name then we have to add "ref" prop in HTML element and have to assign useref const name to this ref prop by doing this now html element is conencted with useRef. Now we can access all properties and methods of HTML elements using ref const name. ref always returns the object which contains always currecnt property which contains all the properties and methods of HTML element using this we can access value of html element.
+- When ref values changed, the component re-excution wont happen in refs.
+- Can be used to gain direct DOM Element access (Greate for reading values or accessing certain browser APIs)
+### using Refs more than DOM Element connections
+- We can use useRef also to store values of component instance specific and useRef stores the values of each component instances separately and this value will be available if component re-renders also. We can use refs to manager the values of component instance.
+- Ref value wont be reset or cleared when component re-excutes, instead just as how it stores the state value, it also stores the ref values behind the scene, react make sures they dont get lose when component function re executes.
+## Context API (createContext and useContext hooks)
+- Using Context API, we can able to access values directly in any component without need of passing through props to multiple compponent. We can add state updating function values and other values in context and that we can access in any component by wrapping context element.
+- We can consume the context values using useContext or use react hooks(methods) by passing context const inside the useContext as value then we can destruture values from the object returned by useContext. The use() work only react version 19 above and if react version is below 19 we have to use useContext() hook. By default we can not use react hooks inside if block or any other block and have to define hooks at top of inside component fuction but use() hook we can use inside any block(e.g if block). By using useContext, we can connect any component function to context and then we can access values of context in component funciton.
+- We can create the context(context object) by using the createContext method(function). Then we can include initial or default value of context inside createContext() method as an object or any value. Then we have to assign this createContext object in new const name(name as to be in uppercase character like component name) then we can use this const name as context component wrapper.
+- We have to use provider nested name along with context component name if we use react version 19 below and also have to set value prop along with this wrapper element. In value prop we have to insert default context values again.
+- We can also use context consumer component to use the context value in any component by adding consumer wrapper in jsx code.
+- React re-executes the component function which uses the context value and if any changes in context value.
 ## Important React Inteview Questions:
 1. what is Virtual DOM and Real DOM in react and the difference between these two DOM.
 2. What is state?
