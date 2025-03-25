@@ -127,6 +127,49 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 - We have to use provider nested name along with context component name if we use react version 19 below and also have to set value prop along with this wrapper element. In value prop we have to insert default context values again.
 - We can also use context consumer component to use the context value in any component by adding consumer wrapper in jsx code.
 - React re-executes the component function which uses the context value and if any changes in context value.
+## useImperativeHandle hook
+Using this react hook, we can define properties and methods and that should be accessible on this component and from outside this component. This makes the component more reusable and this hook requires two parameters, 
+1. The first parameter is **ref** you received as a prop to the MyInput component
+2. The second parameter is the function that returns the object with properties and methods that should be exposed to outside component.
+```
+import { useRef, useImperativeHandle } from 'react';
+
+function MyInput({ ref, ...props }) {
+  const inputRef = useRef(null);
+
+  useImperativeHandle(ref, () => {
+    return {
+      focus() {
+        inputRef.current.focus();
+      },
+      scrollIntoView() {
+        inputRef.current.scrollIntoView();
+      },
+    };
+  }, []);
+
+  return <input {...props} ref={inputRef} />;
+};
+
+export default MyInput;
+```
+## createPortal feature of ReactDOM
+**createPortal** lets you render some children into a different part of the DOM.
+```
+import { createPortal } from 'react-dom';
+
+function MyComponent() {
+  return (
+    <div style={{ border: '2px solid black' }}>
+      <p>This child is placed in the parent div.</p>
+      {createPortal(
+        <p>This child is placed in the document body.</p>,
+        document.body
+      )}
+    </div>
+  );
+}
+```
 ## Important React Inteview Questions:
 1. what is Virtual DOM and Real DOM in react and the difference between these two DOM.
 2. What is state?
