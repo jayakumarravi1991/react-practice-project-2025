@@ -2,7 +2,9 @@
 
 # AEM
 1. what is out of box components in AEM?
-2. What is AEM sling and content rendering?  
+2. What is AEM sling and content rendering?
+3. What is CRXDE Lite?
+4. AEM Templates?
 
 1. what is out of box components in AEM?  
 In Adobe Experience Manager (AEM), **out-of-the-box (OOTB) components** are pre-built components that come with the standard installation of AEM. These components are ready to use and can be directly utilized to build and manage content on your website.
@@ -24,6 +26,27 @@ Apache sling is a key **web application framework** used in Adobe Experience Man
 
 Sling's approach to content rendering makes it highly flexible and efficient for developing dynamic and scalable web applications in AEM.
 
-
-
+3. What is CRXDE Lite?
+  - CRXDE Lite is a development environment for AEM Projects.
+  - It's embedded in AEM and enables you to perform standard development tasks in the browser.
+  - Recommendation:
+    - Use AEM Developer Tools when you are working with Eclipse plugins.
+    - Use AEM HTL Brackets Extension during project development.
+  - CRXDE Lite folder purposes:
+    - Apps: This folder is used for storing all the component, scripts and templates definitions of related to your site.
+    - config: This folder contains all configuration for your site. This folder is used to store editable templates and policies for your site.
+    - content: This folder contains all the content created for your site by authors and editors.
+    - etc: This folder contains all the resources related tools and utilities and it also contains client libraries and page designs.
+    - home: This folder contains information about users and groups.
+    - libs: This folder contains all the libraries and definitions that belongs to AEM core. It includes OOTB components, templates and any other AEM features.
+    - tmp: This folder serves as a temporary working area
+    - var: This folder contains files that changed and updated by the system such as audit logs, statistics and even handling.
+  - We can create project folder inside Apps and then we can create components and templates folder inside project folder. Content folder contains two folder content and structures.
+4. AEM Templates
+- An template is used to create the page in AEM. Templates defines the base structure of the AEM page, initial content and components that can be used on the pages within the selected scope. Example tempaltes base page, content page, home page.
+- when we create new page on the AEM page, the list of available template depends on the location of the new page and restriction specified in each template.
+- Availability of templates can be controlled by using properties like allowedPath, allowedParents, allowedChildren, or allowedTemplates.
+- Two types of templates are there:
+  - Static templates: This template is created and defined and configured by developers. This template created and stored inside /apps/.. folder. uses design mode to persist the design properties. If we make any changes to the template structure will not reflect on created pages.
+  - Edititable templates: This template can be created and edited by authors. This template created and stored inside /config/.. folder. uses content policies to persist the design properties. If we make any changes to the template structure will reflect on pages created with editable template.
 
