@@ -170,6 +170,58 @@ function MyComponent() {
   );
 }
 ```
+## Styled Components
+To use styled component, we have to import styled from styled component
+```
+import {styled} from 'styled-components';
+const StyledCounter = styled.div`
+  /* ... */
+`;
+const Paragraph = styled.p`
+  /* ... */
+`;
+const Button = styled.button`
+  /* ... */
+`;
+```
+### Dynamic and Conditional styling with styled components
+we can pass(add) props(attributes) in styled component element to access that props in styled components template literal string and to generate styling dynamically and conditionally. Styled component passes through any known HTML attribute to the DOM and other attributes as props(only non inbuild attributes accessible as props).
+### Pseudoelements, pseudoselectors, and nesting and media queries
+```
+const StyledDiv = styled.div`
+  & p {
+        color: blue;
+    }
+
+  &:hover {
+    color: red; // <Thing> when hovered
+  }
+
+  &.something {
+    background: orange; // <Thing> tagged with an additional CSS class ".something"
+  }
+
+  .something-else & {
+    border: 1px solid; // <Thing> inside another element labeled ".something-else"
+  }
+
+  & ~ & {
+    background: tomato; // <Thing> as a sibling of <Thing>, but maybe not directly next to it
+  }
+
+  & + & {
+    background: lime; // <Thing> next to <Thing>
+  }
+  @media (min-width: 768px) {
+    & {
+     color: red;
+    }
+}
+`
+```
+
+
+
 ## Important React Inteview Questions:
 1. what is Virtual DOM and Real DOM in react and the difference between these two DOM.
 2. What is state?
