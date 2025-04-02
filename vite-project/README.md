@@ -170,6 +170,54 @@ function MyComponent() {
   );
 }
 ```
+## React CSS Approach
+We can style React app using following any methods:
+1. Styling with **Vanilla CSS**
+2. **Scoping** styles with **CSS Modules**
+3. **CSS-in-JS** styling with **Styled Components**
+4. Styling with **Tailwind CSS**
+5. Also we can style React app by writting inline style but this method is not recommended. We have to pass object as an value to style prop inside curly braces not string value.
+**Advantages**:
+- quick and easy to add to JSX
+- Styles only affect to element to which you add them.
+```<h1 style={{color: 'red', backgroundColor: 'blue', textAlign: 'left'}}></h1> ```
+
+### Dynamic and Conditional inline styling
+We can add property value dynamically using ternary operator.
+```<h1 style={{color: 'red', backgroundColor: emailNotValie ? '#ffffff' : '#000000'}}></h1> ```
+
+### Dynamic and conditional styling with CSS classes:
+We can use template literal to add dyanmic class and hardcoded class names:
+``` <h2 className={`headingstyle ${headingtype}`}></h2> ```
+
+
+1. Styling with **Vanilla CSS**
+- Vite and React injects all the css imports of the components as separate style tag on the page. 
+**Advantages**:
+- CSS code is decoupled from JSX code
+- You write CSS code as you know it 
+- Also css code can be written by another developer who need only minimal amount of access to your JSX code
+- 
+**Disadvantages**:
+- You need to know CSS
+- CSS code is not scoped to components. CSS rules may clash across components. Components specific css styles are accessible global on the page.
+
+2. **Scoping** styles with **CSS Modules**
+- Vanilla CSS with file-specific scoping. Build tool transforms CSS module css class names with only those which are guaranteed to be unique per file.
+- We have to add **module** name in css file name for build tool to understand the css file is css module file.
+e.g header.module.css 
+- Then we have to import css module file and build tool returns the object when we import css module file and we can name object with any naming. The object contains the transformed unique class names.
+``` 
+import classes from './header.module.css';
+<p className={classes.paragraph}>Heading 1</p>
+
+```
+**Advantages**:
+- CSS code is decoupled from JSX code
+- You write CSS code as you know it 
+- Also css code can be written by another developer who need only minimal amount of access to your JSX code
+- 
+
 ## Styled Components
 To use styled component, we have to import styled from styled component
 ```
