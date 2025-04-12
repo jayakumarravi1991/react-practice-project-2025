@@ -282,7 +282,16 @@ const StyledDiv = styled.div`
 9. What is SPA and Non SPA and difference between these two?
 10. How to indentify the site is SPA or non SPA site?
 11. Build-in Components vs Custom Components?
+12. React's Strict Mode component?
+13. React Developer Tools and the standalone version of React Developer Tools?
 
+
+12. React's Strict Mode component?
+    it execute every component function twice instead of once in development. If we prepare our application for production and upload to server, strick mode wont execute every component twice because it will slightly impact performance of your application. It helps to catch the errors when component executed twice.
+13. React Developer Tools and the standalone version of React Developer Tools?
+    https://reactnative.dev/docs/0.72/react-devtools
+    https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en&pli=1
+    https://www.freecodecamp.org/news/how-to-use-react-devtools/
 ## Important Javascript Interview Questions:
 1. Rest and Spread Operator
 2. Array and Object destructing
