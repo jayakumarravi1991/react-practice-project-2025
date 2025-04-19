@@ -110,6 +110,7 @@ useRef is an react hook. First we have to assign useRef value to const name then
 ### Forwarding Refs
 - React wont accept ref as regular prop(when destrcuting the ref prop in component function) in react 19 below. To **forward ref** as props to the component function in react 19 below, we have to use forwardRef method.
 - Forward Ref is deprecated in React 19 and above version, forwardRef is no longer necessary. Pass **ref** as a prop instead.
+- In React, forwardRef is a utility function that allows you to pass a ref from a parent component to a child component, especially when working with functional components. It's primarily used to enable direct access to the DOM node of a child component's rendered element from its parent. This is helpful when you need to manipulate the DOM of a child component or interact with its underlying element.
 
 Call **forwardRef()** to let your component receive a ref and forward it to a child component:
 ```
