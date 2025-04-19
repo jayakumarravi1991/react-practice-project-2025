@@ -191,6 +191,16 @@ Why Use Portals?
 ## React Error Boundary
 In React, an Error Boundary is a special component that catches JavaScript errors in its child components during rendering, lifecycle methods, and constructors. Instead of the entire React application crashing, an error boundary gracefully handles these errors and displays a fallback UI (like an error message or a "Something went wrong" screen).
 Error Boundaries, you can still use Error Boundaries with functional components by wrapping your functional components inside a class-based Error Boundary.
+```
+ import React from 'react';
+ import { ErrorBoundary } from "react-error-boundary";
+
+ const App = () => {
+ return <ErrorBoundary fallback={<div>Something went wrong</div>}>
+ /* rest of your component */
+ </ErrorBoundary>
+ }
+```
 
 ## React CSS Approach
 We can style React app using following any methods:
