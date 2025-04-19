@@ -159,6 +159,13 @@ export default MyInput;
 ```
 ## createPortal feature of ReactDOM
 **createPortal** lets you render some children into a different part of the DOM.
+
+Creating a portal in React allows you to render a component's child nodes into a DOM node that exists outside of the parent component's hierarchy. This is especially useful for creating modals, tooltips, or any UI element that needs to be rendered outside of the main DOM tree structure.
+
+The createPortal function takes two arguments and third is optional:
+- children: The react components or element you want to render
+- DOM node: The DOM element where the children should be rendered.
+- key: an optional, A unique string or number to be used as the portal’s key.
 ```
 import { createPortal } from 'react-dom';
 
@@ -174,6 +181,17 @@ function MyComponent() {
   );
 }
 ```
+![image](https://github.com/user-attachments/assets/33c0c991-f22c-4b96-ac93-edb886da4f52)
+![image](https://github.com/user-attachments/assets/f8542b69-e08d-431c-923a-156e12b60467)
+
+Why Use Portals?
+- To bypass parent element's CSS overflow: hidden or z-index issues.
+- To separate UI elements like modals or tooltips into their own DOM structure for better control.
+
+## React Error Boundary
+In React, an Error Boundary is a special component that catches JavaScript errors in its child components during rendering, lifecycle methods, and constructors. Instead of the entire React application crashing, an error boundary gracefully handles these errors and displays a fallback UI (like an error message or a "Something went wrong" screen).
+Error Boundaries, you can still use Error Boundaries with functional components by wrapping your functional components inside a class-based Error Boundary.
+
 ## React CSS Approach
 We can style React app using following any methods:
 1. Styling with **Vanilla CSS**
