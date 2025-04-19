@@ -101,9 +101,12 @@ function reducer(state, action) {
 Then you need to fill in the code that will calculate and return the next state.
 Actions can have any shape. By convention, it’s common to pass objects with a type property identifying the action. It should include the minimal necessary information that the reducer needs to compute the next state. The action type names are local to your component.
 ## useRef React hook
-useRef is an react hook. First we have to assign useRef value to const name then we have to add "ref" prop in HTML element and have to assign useref const name to this ref prop by doing this now html element is conencted with useRef. Now we can access all properties and methods of HTML elements using ref const name. ref always returns the object which contains always currecnt property which contains all the properties and methods of HTML element using this we can access value of html element.
+useRef is an react hook. First we have to assign useRef value to const name(ref object) then we have to add "ref" prop(attribute) in HTML element and have to assign useref const name to this ref prop by doing this now html element is conencted with useRef. Now we can access all properties and methods of HTML elements using ref const name. ref always returns the object which contains always currecnt property which contains all the properties and methods of HTML element using this we can access value of html element.
 - When ref values changed, the component re-excution wont happen in refs.
 - Can be used to gain direct DOM Element access (Greate for reading values or accessing certain browser APIs)
+- DOM Interaction: Primarily used for referencing and manipulating DOM elements directly.
+- Mutable Value: useRef creates a mutable object ({ current: initialValue }) where current is the value that can be modified.
+- The useRef hook in React allows you to create a mutable value that persists across re-renders without causing a re-render when updated. It's primarily used for referencing DOM elements directly, but it can also store mutable values that don't directly affect the UI.
 ### using Refs more than DOM Element connections
 - We can use useRef also to store values of component instance specific and useRef stores the values of each component instances separately and this value will be available if component re-renders also. We can use refs to manager the values of component instance.
 - Ref value wont be reset or cleared when component re-excutes, instead just as how it stores the state value, it also stores the ref values behind the scene, react make sures they dont get lose when component function re executes.
