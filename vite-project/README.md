@@ -157,6 +157,12 @@ function MyInput({ ref, ...props }) {
 
 export default MyInput;
 ```
+It’s best to use useImperativeHandle sparingly, only when you need fine-grained control over ref behavior, as it can lead to less predictable code. For most scenarios, directly passing ref to access DOM elements or child components is sufficient.
+
+When Working with forwardRef: Since useImperativeHandle works hand in hand with forwardRef, it’s primarily used in scenarios involving forwarded refs.
+
+Enhancing Performance: Instead of exposing the entire child component or DOM element, you expose only specific methods or properties. This minimizes unintended access to the child’s internal details.
+
 ## createPortal feature of ReactDOM
 **createPortal** lets you render some children into a different part of the DOM.
 
