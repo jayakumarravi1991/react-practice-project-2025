@@ -2,6 +2,57 @@
 ## React
 1. React projects comes with a build process that transforms JSX code(behing the scene by development server) to code that does work in browsers.
 2. In React we write code in decalarative way. You define the target HTML structure & UI - not the steps to get there!
+
+### Decalarative and Imperative:
+
+**Declarative** | You describe **what you want the UI to look like**, and React handles the "how".
+
+**Imperative** | You tell the **DOM step-by-step how to do something** (e.g., manually creating/updating elements).
+
+```
+Declarative Way (React style):
+const fruits = ["Apple", "Banana", "Cherry"];
+
+function FruitList() {
+  return (
+    <ul>
+      {fruits.map((fruit, index) => (
+        <li key={index}>{fruit}</li>
+      ))}
+    </ul>
+  );
+}
+```
+```
+Imperative Way:
+import { useEffect, useRef } from "react";
+
+const fruits = ["Apple", "Banana", "Cherry"];
+
+function FruitList() {
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    const ul = listRef.current;
+    fruits.forEach((fruit) => {
+      const li = document.createElement("li");
+      li.textContent = fruit;
+      ul.appendChild(li);
+    });
+  }, []);
+
+  return <ul ref={listRef}></ul>;
+}
+```
+
+### Build Process
+- The build process involves creating an optimized production-ready version of your application. This process transforms your code (written in JSX/JavaScript) into a format that browsers can understand, minimizes it, and optimizes assets like CSS and JavaScript for better performance.
+- In a typical React project, Webpack or similar tools are used under the hood for the build process. To trigger the build process in React project : use **npm run build**
+
+**Development server**: Provides a live environment during development (e.g., npm start). This starts the server and opens the app in your browser (usually on http://localhost:3000).
+## NPM Init
+The npm init command initializes a **new Node.js** project by creating a **package.json** file in the current directory. This file contains metadata about your project, such as its **name, version, description, dependencies and script definitions**.
+
 ## Component Functions or React Components
 Component is just a regular javascript function. React to recognize the javascript function as component and used as component, it's a component functions or javascript function must follow two important rules:
 1. The function name must start with an uppercase character. Multi-word names should be written in PascalCase(e.g "MyHeader").
