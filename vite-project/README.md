@@ -52,7 +52,13 @@ function FruitList() {
 **Development server**: Provides a live environment during development (e.g., npm start). This starts the server and opens the app in your browser (usually on http://localhost:3000).
 ## NPM Init
 The npm init command initializes a **new Node.js** project by creating a **package.json** file in the current directory. This file contains metadata about your project, such as its **name, version, description, dependencies and script definitions**.
-
+## Real DOM vs Virtual DOM
+The Real DOM is the actual HTML structure of a webpage that the browser directly manages, while the Virtual DOM is a lightweight, in-memory representation of the Real DOM that React uses to optimize UI updates. 
+**Virtual DOM:**
+**Lightweight Representation**: React creates a Virtual DOM, which is a copy of the Real DOM, in memory. 
+**Optimized Updates**:Instead of directly updating the Real DOM for every change, React updates the Virtual DOM, then compares it to the previous version to identify the minimal changes needed. 
+**Efficient Updates**:This process, called reconciliation, allows React to apply updates to the Real DOM in a more efficient and optimized manner, minimizing unnecessary DOM manipulations. 
+**Abstraction:** The Virtual DOM is an abstraction that React uses internally, not a browser feature. 
 ## Component Functions or React Components
 Component is just a regular javascript function. React to recognize the javascript function as component and used as component, it's a component functions or javascript function must follow two important rules:
 1. The function name must start with an uppercase character. Multi-word names should be written in PascalCase(e.g "MyHeader").
