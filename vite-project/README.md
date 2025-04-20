@@ -182,6 +182,39 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 - We have to use provider nested name along with context component name if we use react version 19 below and also have to set value prop along with this wrapper element. In value prop we have to insert default context values again.
 - We can also use context consumer component to use the context value in any component by adding consumer wrapper in jsx code.
 - React re-executes the component function which uses the context value and if any changes in context value.
+## Prop drilling
+Prop drilling occurs when you need to pass data (via props) through multiple levels of a component tree to reach a deeply nested child component. Essentially, intermediate components pass props they don't directly need, just to ensure the data reaches the intended child component.
+**Why it's problematic:**
+- **Increased code complexity**: The code becomes harder to read and understand, especially in large applications with many nested components. 
+- **Maintenance challenges**: Changes to the data or the component structure require modifications in multiple places, increasing the risk of errors. 
+- **Potential performance issues**: Passing props through many intermediate components can lead to unnecessary re-renders and performance degradation.
+
+**Example**: Imagine an app where a "user object" needs to be shared with a deeply nested component: The **user prop** is drilled through Parent, Child, and GrandChild to reach GrandChild, even though only GrandChild uses it.
+
+```
+const App = () => {
+  const user = { name: 'Alice', age: 25 };
+  return <Parent user={user} />;
+};
+
+const Parent = ({ user }) => {
+  return <Child user={user} />;
+};
+
+const Child = ({ user }) => {
+  return <GrandChild user={user} />;
+};
+
+const GrandChild = ({ user }) => {
+  return <div>Hello, {user.name}!</div>;
+};
+```
+**Solution to Avoid Prop Drilling**
+- The React **Context API** is an effective solution to eliminate prop drilling. Instead of passing props through intermediate components, you can use Context to share state globally across the component tree.
+- **Component Composition**: Instead of drilling props down through multiple levels, try to structure your components in a way that they can access the necessary data directly.
+- **State Lifting**: Lift the state to the nearest common ancestor of the components that need it, and then pass the state down as props. 
+
+
 ## useImperativeHandle hook
 Using this react hook, we can define properties and methods and that should be accessible on this component and from outside this component. This makes the component more reusable and this hook requires two parameters, 
 1. The first parameter is **ref** you received as a prop to the MyInput component
