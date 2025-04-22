@@ -307,7 +307,43 @@ example: if we have app component which has input element and adding onChange ev
 Don't overuse memo():
 - Dont wrap all custom components with memo function, it will add lot of unnecessary checks and blocking component execution also block all child component executions.
 - Add this memo function only to the component which is high in component tree. 
--Also dont use it on components where prop values will change frequently.
+- Also dont use it on components where prop values will change frequently.
+```
+import { memo } from 'react';
+
+const SomeComponent = memo(function SomeComponent(props) {
+  // ...
+});
+```
+### 4. Avoiding component function executions with clever structuring
+We can avoid the unnecessary component re-executions by splitting the code in separate component which avoids unnecessaryly execution of other components no changes.
+### 5. Understanding the useCallback() Hook
+We can use this hook to avoid the function execution unnecessarily when component fucntion executes. This avoids the prop with function value assigned get changed on when component re-excutes and avoids re-creation of function on re-render.   
+
+## useCallback() hook
+useCallback is a React Hook that lets you cache a function definition between re-renders. It is used to optimize performance by preventing unnecessary re-renders of child components. 
+useCallback takes two arguments:
+  - callback: A function definition that you want to cache between re-renders.
+  - dependencies: A **list of dependencies** including every value within your component that’s used inside your function.
+```
+import { useCallback } from 'react';
+
+function ProductPage({ productId, referrer, theme }) {
+  const handleSubmit = useCallback((orderDetails) => {
+    post('/product/' + productId + '/buy', {
+      referrer,
+      orderDetails,
+    });
+  }, [productId, referrer]);
+  // ...
+```
+On the **initial render**, the returned function you’ll get from useCallback will be the function you passed.
+
+On the following renders, React will compare the **dependencies** with the dependencies you passed during the previous render. If none of the dependencies have changed (compared with Object.is), **useCallback** will return the same function as before. Otherwise, useCallback will return the function you passed on this render.
+
+In other words, **useCallback** caches a function between re-renders until its dependencies change.
+
+
 ## React CSS Approach
 We can style React app using following any methods:
 1. Styling with **Vanilla CSS**
