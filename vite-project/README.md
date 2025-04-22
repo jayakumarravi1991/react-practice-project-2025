@@ -297,7 +297,17 @@ Error Boundaries, you can still use Error Boundaries with functional components 
  </ErrorBoundary>
  }
 ```
-
+## Session 13: A look behind the scenes of React and Optimization Techniques
+### 1. React builds the component Tree and how react words behind the scenes
+When we load the page on browser, first react builds the component tree starting from the APP component(root component) and then it traverses to the next custom component and forms the complete custom components tree until it reaches the component with only JSX code without any custom component.
+### 2. Analyzing the component function executions via React's DevTools Profiler
+We can analyze the component function executions, re-rendering and updating via react's devtool profiler recording. We have to click the button start profiling to record which component has been re-rendered on component tree when user interacts with the page and how many milli seconds it took to re-execute components function and reason why component function re-executed again. We have to enable the check box to record the reason for re-execution of component. Also it displays the information of component which is re-rendered and not re-rendered when user interacts on the page.
+### 3. Avoiding component function executions with memo() function
+example: if we have app component which has input element and adding onChange event handler to this input field and also if app component has more custom components, when ever we make changes to the input field and state updating function re-executes the whole app component including the child custom component. In this case there is no changes in child custom component but react unnessarirly re-excutes the all child custom components of state change in app component, this creates the performance issue. To avoid this performance issue, we can use "memo function"x We have to wrap the custom component function inside memo function, this memo function checks the incoming prop value with previous prop value and if no changes then it stops executing the child component. The memo function check the prop value with previous prop value only when parent component trigger the child component for execution. 
+Don't overuse memo():
+- Dont wrap all custom components with memo function, it will add lot of unnecessary checks and blocking component execution also block all child component executions.
+- Add this memo function only to the component which is high in component tree. 
+-Also dont use it on components where prop values will change frequently.
 ## React CSS Approach
 We can style React app using following any methods:
 1. Styling with **Vanilla CSS**
