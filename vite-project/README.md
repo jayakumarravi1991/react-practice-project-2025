@@ -319,6 +319,51 @@ const SomeComponent = memo(function SomeComponent(props) {
 We can avoid the unnecessary component re-executions by splitting the code in separate component which avoids unnecessaryly execution of other components no changes.
 ### 5. Understanding the useCallback() Hook
 We can use this hook to avoid the function execution unnecessarily when component fucntion executes. This avoids the prop with function value assigned get changed on when component re-excutes and avoids re-creation of function on re-render.  
+### 6. Why key matters when managing the state
+Keys are an essential part of managing state in React, especially when dealing with lists or dynamically created components. They play a critical role in how React identifies and updates components efficiently. 
+- **Unique Identification**: Keys help React uniquely identify elements in a list. This is crucial when React reconciles (or compares) the virtual DOM with the real DOM. Without keys, React cannot accurately determine which items have been added, removed, or changed, leading to incorrect or inefficient updates.
+- **How State Mapping Works**: When you dynamically render components (like through .map()), each component instance may manage its own internal state. React tracks state and re-renders components based on changes. However, if keys are not properly assigned, React can lose track of which state belongs to which component instance.
+- **Without Proper Keys**: When you use no keys or unstable keys (like array indexes), React can't distinguish between instances. As a result, state might "move" between components, causing unpredictable behavior or bugs.
+- **Preserving State**: When managing stateful components, keys are vital to preserving the local state of each component. If keys are not used (or are incorrectly implemented), React might confuse one component with another, leading to unexpected behavior.
+  - **using array index has key also create problem:**
+```
+import React, { useState } from 'react';
+
+const DynamicComponent = ({ id }) => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>{`Component ID: ${id}, Count: ${count}`}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+};
+
+const ParentComponent = () => {
+  const [components, setComponents] = useState([1, 2, 3]);
+
+  return (
+    <div>
+      {components.map((id, index) => (
+        <DynamicComponent key={index} id={id} /> // Using index as a key
+      ))}
+    </div>
+  );
+};
+```
+using unique id value of eacy array as best always to avoid issues. **Using unique and stable keys (like an ID)** ensures React correctly maps state to each component.
+
+```
+{users.map(user => (
+  <input
+    key={user.id}
+    value={user.name}
+    onChange={e => updateUserName(user.id, e.target.value)}
+  />
+))}
+```
+
 
 ## memo() function
 - **memo** lets you skip re-rendering a component when its props are unchanged. memo is used for component optimization.
