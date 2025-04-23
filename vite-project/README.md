@@ -318,10 +318,38 @@ const SomeComponent = memo(function SomeComponent(props) {
 ### 4. Avoiding component function executions with clever structuring
 We can avoid the unnecessary component re-executions by splitting the code in separate component which avoids unnecessaryly execution of other components no changes.
 ### 5. Understanding the useCallback() Hook
-We can use this hook to avoid the function execution unnecessarily when component fucntion executes. This avoids the prop with function value assigned get changed on when component re-excutes and avoids re-creation of function on re-render.   
+We can use this hook to avoid the function execution unnecessarily when component fucntion executes. This avoids the prop with function value assigned get changed on when component re-excutes and avoids re-creation of function on re-render.  
+
+## memo() function
+- **memo** lets you skip re-rendering a component when its props are unchanged. memo is used for component optimization.
+- Wrap a component in **memo** to get a memoized version of that component. This memoized version of your component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed.
+- This memo function we use only with component function to avoid the unnecessary re-render of component.
+```
+import { memo } from 'react';
+const MyComponent = memo(({ data }) => {
+  console.log('Rendering...');
+  return <div>{data}</div>;
+});
+```
+## useMemo() function
+- **useMemo** is a React Hook that lets you cache or memoize the result of computations(calculations) or functions within a component between re-renders. It prevents expensive calculations from being re-executed unless their dependencies change. This is helpful for optimizing performance when dealing with values.
+- This function we majorly use with normal function which is inside the component to avoid the unnecessary re-execution of function.
+- So, useMemo is all about memoizing values and calculations of normal function.
+```
+import { useMemo } from 'react';
+
+function TodoList({ todos, tab }) {
+  const visibleTodos = useMemo(
+    () => filterTodos(todos, tab),
+    [todos, tab]
+  );
+  // ...
+}
+```
+
 
 ## useCallback() hook
-useCallback is a React Hook that lets you cache a function definition between re-renders. It is used to optimize performance by preventing unnecessary re-renders of child components. 
+useCallback is a React Hook that lets you cache a function definition between re-renders. It's especially useful when passing functions as props to child components, ensuring the function reference remains stable unless its dependencies change. It is used to optimize performance by preventing unnecessary re-renders of child components. 
 useCallback takes two arguments:
   - callback: A function definition that you want to cache between re-renders.
   - dependencies: A **list of dependencies** including every value within your component that’s used inside your function.
@@ -458,6 +486,13 @@ const StyledDiv = styled.div`
 11. Build-in Components vs Custom Components?
 12. React's Strict Mode component?
 13. React Developer Tools and the standalone version of React Developer Tools?
+14. what is the purpose of useCallback hook and useMemo hook? and differene between these two hooks?
+    - useCallback is specifically used to memoize functions.
+    - useMemo is used to memoize any return value, which could be a value, an object, or even the result of a function.
+15. what is the purpose of memo and useMemo hook? and differene between these two hooks?
+    - useMemo - Memoizes the **result of a computation** to prevent expensive recalculations during renders. This is used **inside functional components**.
+    - memo - Memoizes an entire **functional component**. Prevents re-rendering of the component if its props haven't changed.
+
 
 
 12. React's Strict Mode component?
