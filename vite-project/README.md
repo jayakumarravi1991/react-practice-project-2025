@@ -416,6 +416,95 @@ On the following renders, React will compare the **dependencies** with the depen
 
 In other words, **useCallback** caches a function between re-renders until its dependencies change.
 
+## React useEffect() hook
+
+```
+import React, { useState, useEffect } from 'react';
+
+const TimerComponent = () => {
+  const [showTimer, setShowTimer] = useState(true);
+
+  return (
+    <div>
+      <button onClick={() => setShowTimer(!showTimer)}>
+        {showTimer ? 'Hide Timer' : 'Show Timer'}
+      </button>
+      {showTimer && <Timer />}
+    </div>
+  );
+};
+
+const Timer = () => {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log('Interval running');
+    }, 1000);
+
+    // Cleanup function
+    return () => {
+      clearInterval(timer); // Clear the interval when the component unmounts
+      console.log('Cleanup on unmount');
+    };
+  }, []);
+
+  return <div>Timer is running. Check the console for updates.</div>;
+};
+
+export default TimerComponent;
+```
+**Example Scenario:**
+**Mount**: You load the page, and the Timer component starts logging "Interval running" every second.
+**Unmount**: You click "Hide Timer", and the Timer component unmounts. The cleanup function runs, stopping the interval and logging "Cleanup on unmount".
+
+## AbbortController
+```
+import React, { useState, useEffect } from 'react';
+
+const DataFetcher = () => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let abortController = new AbortController(); // Create an AbortController instance
+
+    async function fetchData() {
+      try {
+        const response = await fetch('https://api.example.com/data', { signal: abortController.signal });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          setError(error);
+        }
+      }
+    }
+
+    fetchData();
+
+    // Cleanup function
+    return () => {
+      abortController.abort(); // Abort the fetch request when the component unmounts
+    };
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  return <div>Data: {JSON.stringify(data)}</div>;
+};
+
+export default DataFetcher;
+```
+**Explanation:**
+- AbortController: This is used to abort the fetch request if the component unmounts before the request completes.
+- Cleanup Function: The cleanup function calls abortController.abort(), which cancels the fetch request.
+**Benefits:**
+  Using AbortController is a more modern and cleaner approach to handle fetch requests in React. It ensures that the fetch request is properly canceled, preventing any state updates on an unmounted component.
+
 
 ## React CSS Approach
 We can style React app using following any methods:
