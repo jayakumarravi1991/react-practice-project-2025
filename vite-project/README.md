@@ -392,6 +392,42 @@ function TodoList({ todos, tab }) {
 }
 ```
 
+## lazy loading
+In React, lazy loading is **a technique to improve performance by delaying the loading of components or assets until they are actually needed**. This reduces the initial load time of an application, especially beneficial for larger applications with numerous components or heavy assets. React provides the **lazy** function and **Suspense** component to facilitate this dynamic import of components. 
+
+**Dynamic Imports**:
+- React.lazy uses dynamic imports (using the **import()** keyword) to load components only when they're needed.
+
+**Code Splitting**:
+  - It allows you to split your application's code into smaller chunks, which are then loaded on demand.
+
+**Suspense:**
+  - The React.Suspense component handles the loading state while the lazy-loaded component is being fetched. 
+
+**Benefits**:
+- **Reduced Initial Load Time**: Loading only the necessary components upfront significantly reduces the time it takes for the application to become interactive. 
+- **Improved User Experience**: Users experience faster load times and a more responsive application. 
+- **Smaller Initial Bundle Size**: The initial JavaScript bundle size is smaller because it only contains the code for the initial components. 
+
+
+```
+import React, { lazy, Suspense } from 'react';
+
+// Lazy-loaded component
+const MyLazyComponent = lazy(() => import('./MyLazyComponent'));
+
+function MyComponent() {
+  return (
+    <>
+      <p>Loading a lazy component...</p>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MyLazyComponent />
+      </Suspense>
+    </>
+  );
+}
+```
+
 
 ## useCallback() hook
 useCallback is a React Hook that lets you cache a function definition between re-renders. It's especially useful when passing functions as props to child components, ensuring the function reference remains stable unless its dependencies change. It is used to optimize performance by preventing unnecessary re-renders of child components. 
